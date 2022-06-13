@@ -5,26 +5,21 @@
         <link rel="stylesheet" type="text/css" href="public/css/style.css">
         <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
         <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-        <!-- <script src="script.js"></script>  -->
-
-            <!-- Required styles for Material Web -->
-            <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-            <!-- Required Material Web JavaScript library -->
-            <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-            <!-- Instantiate single textfield component rendered in the document -->
-            <script>
-            mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
-            </script>
     </head>
     <body>
         <div id="base_container">
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple"></span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
-                <span class="mdc-floating-label" id="my-label">Label</span>
-                <span class="mdc-line-ripple"></span>
-              </label>
+            <p id="chorded" style="margin:3%;">Chorded</p>
+            <div id="login_container">
+                <p id="login">Log in</p>
+                <form id="login_form">
+                    <input name="Email" type="text" class="email" placeholder="Email">
+                    <input name="Password" type="text" class="password" placeholder="Password">
+                </form>
+                <div id="login_buttons">
+                    <button name="register" class="button">Register</button>
+                    <button name="login" class="button">Log in</button>
+                </div>
+            </div>
         </div>
-
     </body>
 </html>

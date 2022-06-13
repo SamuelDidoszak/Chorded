@@ -1,30 +1,68 @@
 * {
     margin: 0;
 }
-html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-}
 
 #base_container {
-    background-color: #292929;
-    width: 100%;
-    height: 100%;
+    background: #292929  0% 0% no-repeat padding-box;
+    width: 100vw;
+    height: 100vh;
     align-items: center;
     text-align: center;
     position: absolute;
 }
 
-header {
-    margin-top: 20px;
+#chorded {
+    text-align: left;
+    font-family: 'Roboto Light', sans-serif;
+    font: normal normal 300 96px/112px Roboto;
+    letter-spacing: -1.44px;
+    color: #FFFFFFDE;
+    opacity: 0.5;
+    text-align: center;
+    margin-top: 10%;
 }
 
-#chorded {
-    font-size: 60px;
+#profile_button {
+    float: right;
+    margin: 2% 5% auto;
 }
 
 #search_container {
-    margin-top: 60px;
+    margin-top: 8%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="text"]
+{
+    text-align: left;
+    font: normal normal normal 28px/24px Roboto;
+    letter-spacing: 0.26px;
+    color: #FFFFFF99;
+}
+
+#search_bar_artist {
+    background: #FFFFFF1F 0% 0% no-repeat padding-box;
+    border-radius: 4px 4px 0px 0px;
+    /* line-height: 6.5em; */
+    size: 5em;
+    padding: 1em;
+    width: 20%;
+    border: none;
+    border-bottom: 1px solid #BB86FC;
+    margin: 1%;
+}
+
+#search_bar_song_title {
+    background: #FFFFFF0A 0% 0% no-repeat padding-box;
+    border-radius: 4px 4px 0px 0px;
+    /* line-height: 6.5em; */
+    padding: 1em;
+    width: 40%;
+    border: none;
+    border-bottom: 1px solid #BB86FC;
+    margin: 1%;
 }

@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("search_button").addEventListener("click", submitSearch);
     } else if(page == "login") {
         console.log("login");
+        document.getElementsByName("register")[0].addEventListener("click", 
+            changeLoginButtonVisibility.bind(null, true));
+        document.getElementsByName("login")[1].addEventListener("click", 
+            changeLoginButtonVisibility.bind(null, false));
 
     } else if(page == "results") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
@@ -41,6 +45,19 @@ function modifyTextField(element) {
         element.style.removeProperty("border");
     }
     console.log(page);
+}
+
+function changeLoginButtonVisibility(showRegisterButtons) {
+    console.log("called " + showRegisterButtons);
+    let containers = document.getElementsByClassName("login_buttons");
+    let elementShow = showRegisterButtons? containers[1] : containers[0];
+    let elementHide = showRegisterButtons? containers[0] : containers[1];
+    elementShow.classList.toggle("display_buttons");
+    elementHide.classList.remove("display_buttons");
+    let repeatPassword = document.getElementsByName("Repeat_password")[0];
+    let property = showRegisterButtons? "flex" : "none";
+    repeatPassword.style.setProperty("display", property);
+    repeatPassword.classList.toggle("password_visible");
 }
 
 function submitSearch() {

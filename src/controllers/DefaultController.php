@@ -12,8 +12,8 @@ class DefaultController extends AppController {
         $this -> render("login");
     }
 
-    public function result() {
-        die("results method");
+    public function results() {
+        $this -> render("results");
     }
 
 }

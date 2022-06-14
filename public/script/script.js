@@ -2,22 +2,22 @@ let page = window.location.href.substring(window.location.href.lastIndexOf("/") 
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    Array.from(document.getElementsByTagName("input")).forEach(element => {
-        element.addEventListener("focus", modifyTextField.bind(null, element));
-        element.addEventListener("focusout", modifyTextField.bind(null, element));
-    });
+    // Array.from(document.getElementsByTagName("input")).forEach(element => {
+    //     element.addEventListener("focus", modifyTextField.bind(null, element));
+    //     element.addEventListener("focusout", modifyTextField.bind(null, element));
+    // });
     document.getElementById("chorded").addEventListener("click", changePage.bind(null, "index"));
 
     if(page == "index") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
-        
+        document.getElementById("search_button").addEventListener("click", submitSearch);
     } else if(page == "login") {
-        
+        console.log("login");
 
     } else if(page == "results") {
-
+        document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
+        document.getElementById("search_button").addEventListener("click", displaySearch);
     }
-
 });
 
 
@@ -41,4 +41,14 @@ function modifyTextField(element) {
         element.style.removeProperty("border");
     }
     console.log(page);
+}
+
+function submitSearch() {
+    console.log("submitting...");
+    changePage("results");
+}
+
+function displaySearch() {
+    let container = document.getElementsByClassName("search_container_results")[0];
+    container.classList.toggle("displayed");
 }

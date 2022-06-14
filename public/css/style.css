@@ -23,6 +23,17 @@
     margin-top: 10%;
 }
 
+input {
+    text-align: left;
+    font: normal normal normal 28px/24px Roboto;
+    letter-spacing: 0.26px;
+    color: #FFFFFF99;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
 /*  -----------------------------------------    INDEX SCREEN   ---------------------------------   */
 
 #profile_button {
@@ -39,23 +50,15 @@
     align-items: center;
 }
 
-input[type="text"]
-{
-    text-align: left;
-    font: normal normal normal 28px/24px Roboto;
-    letter-spacing: 0.26px;
-    color: #FFFFFF99;
-}
-
 #search_bar_artist {
-    background: #FFFFFF1F 0% 0% no-repeat padding-box;
+    background: #FFFFFF0A 0% 0% no-repeat padding-box;
     border-radius: 4px 4px 0px 0px;
     /* line-height: 6.5em; */
     size: 5em;
     padding: 1em;
     width: 20%;
     border: none;
-    border-bottom: 1px solid #BB86FC;
+    border-bottom: 1px solid #FFFFFF0A;
     margin: 1%;
 }
 
@@ -66,7 +69,7 @@ input[type="text"]
     padding: 1em;
     width: 40%;
     border: none;
-    border-bottom: 1px solid #BB86FC;
+    border-bottom: 1px solid #FFFFFF0A;
     margin: 1%;
 }
 
@@ -105,10 +108,10 @@ input[type="text"]
 }
 
 .email {
-    background: #FFFFFF1F 0% 0% no-repeat padding-box;
+    background: #FFFFFF0A 0% 0% no-repeat padding-box;
     border-radius: 4px 4px 0px 0px;
     padding: 0.5em;
-    border: 1px solid #BB86FC;
+    border: 1px solid #FFFFFF0A;
     margin: 2%;
 }
 
@@ -116,7 +119,7 @@ input[type="text"]
     background: #FFFFFF0A 0% 0% no-repeat padding-box;
     border-radius: 4px 4px 0px 0px;
     padding: 0.5em;
-    border: 1px solid #BB86FC;
+    border: 1px solid #FFFFFF0A;
     margin: 2%;
     background-image: url(../img/password.svg);
     background-position: 97% 50%;

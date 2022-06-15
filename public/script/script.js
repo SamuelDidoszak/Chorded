@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
     } else if(page == "login") {
         console.log("login");
         document.getElementsByName("register")[0].addEventListener("click", 
-            changeLoginButtonVisibility.bind(null, true));
+            changeLoginRegisterScreen.bind(null, true));
         document.getElementsByName("login")[1].addEventListener("click", 
-            changeLoginButtonVisibility.bind(null, false));
+            changeLoginRegisterScreen.bind(null, false));
 
     } else if(page == "results") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
@@ -47,17 +47,36 @@ function modifyTextField(element) {
     console.log(page);
 }
 
-function changeLoginButtonVisibility(showRegisterButtons) {
-    console.log("called " + showRegisterButtons);
+function changeLoginRegisterScreen(showRegisterButtons) {
     let containers = document.getElementsByClassName("login_buttons");
-    let elementShow = showRegisterButtons? containers[1] : containers[0];
-    let elementHide = showRegisterButtons? containers[0] : containers[1];
+    let repeatPassword = document.getElementsByName("Repeat_password")[0];
+    let elementShow;
+    let elementHide;
+    let property;
+    let loginRegisterValue;
+    let action;
+    if(showRegisterButtons) {
+        elementShow = containers[1];
+        elementHide = containers[0];
+        property = "flex";
+        loginRegisterValue = "Register";
+        action = "registerResult";
+    } else {
+        elementShow = containers[0];
+        elementHide = containers[1];
+        property = "none";
+        loginRegisterValue = "Log in";
+        action = "loginResult";
+    }
     elementShow.classList.toggle("display_buttons");
     elementHide.classList.remove("display_buttons");
-    let repeatPassword = document.getElementsByName("Repeat_password")[0];
-    let property = showRegisterButtons? "flex" : "none";
+
     repeatPassword.style.setProperty("display", property);
     repeatPassword.classList.toggle("password_visible");
+
+    document.getElementById("login").innerHTML = loginRegisterValue;
+
+    document.getElementById("login_form").action = action;
 }
 
 function submitSearch() {

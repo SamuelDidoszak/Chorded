@@ -6,7 +6,7 @@ require_once __DIR__."/../models/User.php";
 class UserRepository extends Repository {
     public function getUserByEmail(string $email): ?User {
         $query = $this->database->connect()->prepare(
-            "SELECT * FROM users WHERE email = :email"
+            "SELECT * FROM public.users WHERE email = :email"
         );
         $query->bindParam(":email", $email, PDO::PARAM_STR);
         $query->execute();

@@ -18,10 +18,10 @@
             <p id="chorded">Chorded</p>
                 <!-- <img /> -->
 
-            <form id="search_container">
+            <form id="search_container" action="results" method="POST">
                 <input name="Artist name" type="text" id="search_bar_artist" placeholder="Artist name">
                 <input name="Song title" type="text" id="search_bar_song_title" placeholder="Song title">
-                <img src="public/img/search.svg" id="search_button" style="margin: 0 0 0 1%;"/>
+                <input name="submit" type="image" src="public/img/search.svg" id="search_button" style="margin: 0 0 0 1%;"/>
             </form>
         </div>
 

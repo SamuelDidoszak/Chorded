@@ -7,7 +7,9 @@ $path = trim($path, '/');
 
 Routing::get("index", "DefaultController");
 Routing::get("login", "DefaultController");
-Routing::get("results", "DefaultController");
+// Routing::get("results", "DefaultController");
+
+Routing::post("results", "ResultsController");
 
 Routing::post("loginResult", "SecurityController");
 Routing::post("registerResult", "SecurityController");

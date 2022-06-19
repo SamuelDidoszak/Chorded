@@ -15,10 +15,40 @@ class UserRepository extends Repository {
         if($user == false)
             return null;
         return new User(
+            $user["id"],
             $user["email"],
-            $user["password"],
-            1
+            $user["password"]
         );
+    }
+
+    public function register(string $email, string $password): ?int {
+        $query = $this->database->connect()->prepare(
+            "SELECT add_user('$email', '$password');"
+        );
+        $query->bindParam(":email", $email, ":password", $password, PDO::PARAM_STR);
+        $query->execute();
+
+        $id = $query->fetch(PDO::FETCH_ASSOC);
+        if($id == false)
+            return null;
+        return new User(
+            $id,
+            $email,
+            $password
+        );
+    }
+
+    public function getUserType(int $id): ?int {
+        $query = $this->database->connect()->prepare(
+            "SELECT type FROM public.user_types WHERE user_id = :id"
+        );
+        $query->bindParam(":id", $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $id = $query->fetch(PDO::FETCH_ASSOC);
+        if($id == false)
+            return null;
+        return $id["type"];
     }
 }
 

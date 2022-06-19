@@ -37,5 +37,15 @@
                 </div>
             </div>
         </div>
+        <div id="target" style="display: none;">
+            <?php
+                require_once __DIR__."/../../src/repository/UserRepository.php";
+                if(isset($_COOKIE["userId"])) {
+                    $userRepository = new UserRepository();
+                    $userType = $userRepository->getUserType((int) $_COOKIE["userId"]);
+                    echo $userType;
+                }
+            ?>
+        </div>
     </body>
 </html>

@@ -23,7 +23,7 @@ class SecurityController extends AppController {
             return $this->render("login", ["variables" => ["Wrong email / password"]]);
         } else {
             // return $this->render("index", ["variables" => [$user->getId()]]);
-            return $this->render("index", ["variables" => [42]]);
+            return $this->render("index", ["variables" => [$user->getId()]]);
             // $url = "http://$_SERVER[HTTP_HOST]";
             // header("Location: {$url}/index");
         }

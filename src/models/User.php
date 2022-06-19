@@ -6,10 +6,10 @@ class User {
     private $password;
     private $type;
 
-    public function __construct(string $email, string $password, int $type) {
+    public function __construct(int $id, string $email, string $password) {
+        $this->id = $id;
         $this->email = $email;
         $this->password = $password;
-        $this->type = $type;
     }
 
     public function getEmail(): string

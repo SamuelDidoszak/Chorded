@@ -2,10 +2,6 @@ let page = window.location.href.substring(window.location.href.lastIndexOf("/") 
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Array.from(document.getElementsByTagName("input")).forEach(element => {
-    //     element.addEventListener("focus", modifyTextField.bind(null, element));
-    //     element.addEventListener("focusout", modifyTextField.bind(null, element));
-    // });
     document.getElementById("chorded").addEventListener("click", changePage.bind(null, "index"));
 
     if(page == "index" || page == "loginResult") {
@@ -21,14 +17,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     } else if(page == "login") {
-        console.log("login");
         document.getElementsByName("register")[0].addEventListener("click", 
             changeLoginRegisterScreen.bind(null, true));
         document.getElementsByName("login")[1].addEventListener("click", 
             changeLoginRegisterScreen.bind(null, false));
 
-        if(document.cookie.search("userId") != -1)
+        if(document.cookie.search("userId") != -1) {
             document.getElementsByName("logout")[0].style.removeProperty("display");
+            document.getElementById("login_container").style.setProperty("display", "none");
+
+            if(document.getElementById("target").innerHTML == 2) {
+                let base_container = document.getElementById("base_container");
+                base_container.innerHTML += "<p id='login'>You are an admin</p>";
+            }
+            document.getElementById("target").remove();
+        }
 
         document.getElementsByName("logout")[0].addEventListener("click", function() {
             document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

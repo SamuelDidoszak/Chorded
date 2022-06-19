@@ -25,5 +25,14 @@
             </form>
         </div>
 
+        <div id="target" style="display: none;">
+            <?php if(isset($variables)) {
+                    foreach ($variables as $variable) {
+                        echo $variable;
+                    }
+                }
+                ?>
+        </div>
+
     </body>
 </html>

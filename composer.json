@@ -1,5 +1,8 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "^7.4"
+        "guzzlehttp/guzzle": "^7.4",
+        "fabpot/goutte": "^4.0",
+        "curl/curl": "^2.0",
+        "spatie/browsershot": "2.4.1"
     }
 }

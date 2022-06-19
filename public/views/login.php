@@ -11,8 +11,17 @@
     <body>
         <div id="base_container">
             <p id="chorded" style="margin:3%;">Chorded</p>
+            <button name="logout" class="button logout" style="display: none;">Log out</button>
             <div id="login_container">
                 <p id="login">Log in</p>
+                <div>
+                    <?php if(isset($variables)) {
+                        foreach ($variables as $variable) {
+                            echo $variable;
+                        }
+                    }
+                    ?>
+                </div>
                 <form id="login_form" action="loginResult" method="POST">
                     <input name="Email" type="text" class="email" placeholder="Email">
                     <input name="Password" type="password" class="password password_visible" placeholder="Password">
@@ -26,14 +35,6 @@
                     <button name="login" class="button">Log in</button>
                     <button name="register" class="button" type="submit" form="login_form">Register</button>
                 </div>
-            </div>
-            <div>
-                <?php if(isset($variables)) {
-                    foreach ($variables as $variable) {
-                        echo $variable;
-                    }
-                }
-                ?>
             </div>
         </div>
     </body>

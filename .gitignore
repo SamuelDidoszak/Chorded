@@ -1,1 +1,7 @@
 config.php
+
+vendor/fabpot
+vendor/jakoch
+vendor/jonnyw
+vendor/psr
+vendor/twig

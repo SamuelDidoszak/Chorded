@@ -1,6 +1,7 @@
 <?php
 
 class User {
+    private $id;
     private $email;
     private $password;
     private $type;
@@ -45,5 +46,10 @@ class User {
         $this->type = $type;
 
         return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

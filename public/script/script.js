@@ -8,15 +8,32 @@ document.addEventListener("DOMContentLoaded", function() {
     // });
     document.getElementById("chorded").addEventListener("click", changePage.bind(null, "index"));
 
-    if(page == "index") {
+    if(page == "index" || page == "loginResult") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
         document.getElementById("search_button").addEventListener("click", submitSearch);
+
+        if(document.cookie.search("userId") == -1) {
+            let userId = document.getElementById("target").innerHTML.trim();
+
+            if(userId != "") {
+                document.cookie = "userId=" + userId;
+            }
+        }
+
     } else if(page == "login") {
         console.log("login");
         document.getElementsByName("register")[0].addEventListener("click", 
             changeLoginRegisterScreen.bind(null, true));
         document.getElementsByName("login")[1].addEventListener("click", 
             changeLoginRegisterScreen.bind(null, false));
+
+        if(document.cookie.search("userId") != -1)
+            document.getElementsByName("logout")[0].style.removeProperty("display");
+
+        document.getElementsByName("logout")[0].addEventListener("click", function() {
+            document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            changePage("index");
+        });
 
     } else if(page == "results") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));

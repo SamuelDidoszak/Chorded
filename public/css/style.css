@@ -178,6 +178,15 @@ input:focus-visible {
     color: #000000;
 }
 
+.logout {
+    float: right;
+    margin: 30px;
+    position: absolute;
+    margin-top: -10%;
+    margin-left: 35%;
+    width: 9%;
+}
+
 /*  --------------------------------------------- RESULTS SCREEN ----------------------------------   */
 
 #header {

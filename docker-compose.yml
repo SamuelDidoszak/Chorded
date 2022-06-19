@@ -23,10 +23,6 @@ services:
     image: composer:1.9
     command: ["composer", "install"]
     command: ["composer", "require", "guzzlehttp/guzzle"]
+    command: ["composer", "require", "fabpot/goutte"]
     volumes:
       - .:/app/
-    # command: ["composer", "require guzzlehttp/guzzle"]
-  
-  # api-php-fpm:
-  #   build: ./docker/php-fpm
-  #   command: sh -c "composer install"

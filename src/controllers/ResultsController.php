@@ -1,7 +1,8 @@
 <?php
 
 require_once "AppController.php";
-require_once __DIR__."/../scraping/UltimateGuitar.php";
+// require_once __DIR__."/../scraping/UltimateGuitar.php";
+require_once __DIR__."/../scraping/RetrieveResults.php";
 
 class ResultsController extends AppController {
     public function results() {
@@ -17,9 +18,18 @@ class ResultsController extends AppController {
         echo($artist);
         echo($title);
 
-        $ultimateGuitar = new UltimateGuitar($artist, $title);
+        $title = str_replace(" ", "%20", $title);
+        print("https://www.ultimate-guitar.com/search.php?search_type=title&value=$artist%20$title\n");
 
-        echo($ultimateGuitar->links);
+        $retrieveResults = new RetrieveResults($artist, $title);
+
+        echo("links: \n");
+
+        $links = $retrieveResults->getLinks();
+        print($links);
+        // foreach($links as $link) {
+        //     var_dump($link);
+        // }
     }
 
     public function loginResult() {

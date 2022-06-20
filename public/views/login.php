@@ -3,7 +3,7 @@
     <head>
         <title>chorded</title>
         <link rel="stylesheet" type="text/css" href="public/css/style.css">
-        <script src="public/script/script.js"></script>
+        <script src="public/script/script.js" defer></script>
 
         <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
         <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -14,7 +14,7 @@
             <button name="logout" class="button logout" style="display: none;">Log out</button>
             <div id="login_container">
                 <p id="login">Log in</p>
-                <div>
+                <div id="errors">
                     <?php if(isset($variables)) {
                         foreach ($variables as $variable) {
                             echo $variable;

@@ -21,7 +21,7 @@ class UserRepository extends Repository {
         );
     }
 
-    public function register(string $email, string $password): ?int {
+    public function register(string $email, string $password): ?User {
         $query = $this->database->connect()->prepare(
             "SELECT add_user('$email', '$password');"
         );
@@ -32,7 +32,7 @@ class UserRepository extends Repository {
         if($id == false)
             return null;
         return new User(
-            $id,
+            $id["add_user"],
             $email,
             $password
         );

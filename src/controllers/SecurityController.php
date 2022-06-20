@@ -31,9 +31,25 @@ class SecurityController extends AppController {
     }
 
     public function registerResult() {
-        $user = new User("andrzejdude@gmail.com", "dooda", 1);
+        $userRepository = new UserRepository();
+        error_reporting(0);
 
-        var_dump($_POST);
+        if($this->isGet()) {
+            echo("data was not sent");
+        }
+
+        $email = $_POST["Email"];
+        $password = $_POST["Password"];
+
+        $user =$userRepository->register($email, $password);
+
+        if (!$user) {
+            return $this->render("login", ["variables" => ["Couldn't register"]]);
+        } else {
+            return $this->render("index", ["variables" => [$user->getId()]]);
+            // $url = "http://$_SERVER[HTTP_HOST]";
+            // header("Location: {$url}/index");
+        }
         die();
     }
 }

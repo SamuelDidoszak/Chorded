@@ -146,6 +146,10 @@ input:focus-visible {
     scale: 1;
 }
 
+.input_error {
+    border: 1px solid #CF6679;
+}
+
 .login_buttons {
     display: flex;
     flex-direction: row;

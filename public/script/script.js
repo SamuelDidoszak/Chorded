@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("chorded").addEventListener("click", changePage.bind(null, "index"));
 
-    if(page == "index" || page == "loginResult") {
+    if(page == "index" || page == "loginResult" || page == "registerResult") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
         document.getElementById("search_button").addEventListener("click", submitSearch);
 
@@ -17,11 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     } else if(page == "login") {
-        document.getElementsByName("register")[0].addEventListener("click", 
-            changeLoginRegisterScreen.bind(null, true));
-        document.getElementsByName("login")[1].addEventListener("click", 
-            changeLoginRegisterScreen.bind(null, false));
-
+        // user cookie related
         if(document.cookie.search("userId") != -1) {
             document.getElementsByName("logout")[0].style.removeProperty("display");
             document.getElementById("login_container").style.setProperty("display", "none");
@@ -33,10 +29,21 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("target").remove();
         }
 
+        // button click listeners
+        document.getElementsByName("register")[0].addEventListener("click", 
+            changeLoginRegisterScreen.bind(null, true));
+        document.getElementsByName("login")[1].addEventListener("click", 
+            changeLoginRegisterScreen.bind(null, false));
+
         document.getElementsByName("logout")[0].addEventListener("click", function() {
             document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             changePage("index");
         });
+        
+        // submit form parsing
+        // document.getElementById("login_form").onsubmit = function() {return false};
+        document.getElementById("login_form").addEventListener("submit",
+            parseRegisterData, false);
 
     } else if(page == "results") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
@@ -107,4 +114,34 @@ function submitSearch() {
 function displaySearch() {
     let container = document.getElementsByClassName("search_container_results")[0];
     container.classList.toggle("displayed");
+}
+
+function parseRegisterData() {
+    let isDataCorrect = true;
+    if (!isEmail(document.getElementsByName("Email")[0].value)) {
+        isDataCorrect = false;
+        document.getElementsByName("Email")[0].classList.add("input_error");
+    } else
+        document.getElementsByName("Email")[0].classList.remove("input_error");
+    if (document.getElementsByName("Password")[0].value.length < 8) {
+        document.getElementById("errors").innerHTML = "Password has to be at least 8 characters long";
+        document.getElementsByName("Password")[0].classList.add("input_error");
+    } else {
+        document.getElementById("errors").innerHTML = "";
+        document.getElementsByName("Password")[0].classList.remove("input_error");
+    }
+    if (document.getElementsByName("Password")[0].value !=
+        document.getElementsByName("Repeat_password")[0].value) {
+        isDataCorrect = false;
+        document.getElementsByName("Repeat_password")[0].classList.add("input_error");
+    } else
+        document.getElementsByName("Repeat_password")[0].classList.remove("input_error");
+    if(!isDataCorrect)
+        event.preventDefault();
+    return isDataCorrect;
+}
+
+
+function isEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
 }

@@ -10,23 +10,14 @@ class ResultsController extends AppController {
             echo("data was not sent");
         }
 
-        var_dump($_POST);
-
         $artist = $_POST["Artist_name"];
         $title = $_POST["Song_title"];
 
-        echo($artist);
-        echo($title);
-
-        $title = str_replace(" ", "%20", $title);
-        print("https://www.ultimate-guitar.com/search.php?search_type=title&value=$artist%20$title\n");
-
         $retrieveResults = new RetrieveResults($artist, $title);
 
-        echo("links: \n");
-
         $links = $retrieveResults->getLinks();
-        print($links);
+        return $this->render("results", ["variables" => [""]]);
+        // print($links);
         // foreach($links as $link) {
         //     var_dump($link);
         // }

@@ -16,7 +16,7 @@ class ResultsController extends AppController {
         $retrieveResults = new RetrieveResults($artist, $title);
 
         $links = $retrieveResults->getLinks();
-        return $this->render("results", ["variables" => [""]]);
+        return $this->render("results", ["variables" => [$artist, $title]]);
         // print($links);
         // foreach($links as $link) {
         //     var_dump($link);

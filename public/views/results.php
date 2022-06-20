@@ -30,7 +30,13 @@
                     <img src="https://m.media-amazon.com/images/I/41+1hbRVFfL._SY1000_.jpg" id="song_picture"/>
                 </div>
                 <div id="song_info_details">
-                    <p id="song_title">Artist - Title</p>
+                    <p id="song_title"> <?php if(isset($variables)) {
+                    // foreach ($variables as $variable) {
+                    //     echo $variable;
+                    // }
+                    echo $variables[0]." - ".$variables[1];
+                }
+                ?></p>
                     <p id="song_key">Key: A#/B Major</p>
                     <p id="song_tempo">Tempo: 66 BPM</p>
                 </div>
@@ -67,6 +73,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div style="display: none;">
+        <?php
+            require_once __DIR__."/../../src/repository/SongRepository.php";
+            require_once __DIR__."/../../src/models/Song.php";
+                $songRepository = new SongRepository();
+                $song = $songRepository->addGetSong($variables[0], $variables[1]);
+                echo $song->getId().": ".$song->getArtist()." - ".$song->getTitle();
+            if(isset($_COOKIE["userId"])) {
+                $songRepository->addSongToHistory((int) $_COOKIE["userId"]);
+            }
+        ?>
         </div>
     </body>
 </html>

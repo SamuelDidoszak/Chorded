@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
     } else if(page == "results") {
         document.getElementById("profile_button").addEventListener("click", changePage.bind(null, "login"));
         document.getElementById("search_button").addEventListener("click", displaySearch);
+
+        let title = document.getElementById("song_title").innerHTML;
+        let artist = title.substring(0, title.indexOf("- "));
+        title = title.substring(title.indexOf("- ") + 2);
+        getSongData(artist, title);
     }
 });
 
@@ -130,7 +135,7 @@ function parseRegisterData() {
         document.getElementById("errors").innerHTML = "";
         document.getElementsByName("Password")[0].classList.remove("input_error");
     }
-    if (document.getElementsByName("Password")[0].value !=
+    if (document.getElementById("login").innerHTML != "Log in" && document.getElementsByName("Password")[0].value !=
         document.getElementsByName("Repeat_password")[0].value) {
         isDataCorrect = false;
         document.getElementsByName("Repeat_password")[0].classList.add("input_error");
@@ -144,4 +149,47 @@ function parseRegisterData() {
 
 function isEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
+}
+
+function getSongData(artist, title) {
+    // let query = JSON.stringify({
+    //     query: {
+    //         query: `query PaginatedLibraryTracksQuery {libraryTracks(first: 10 filter: {title: like you do}) {pageInfo {hasNextPage} edges {cursor node {id audioAnalysisV6 {__typename ... on AudioAnalysisV6Finished {result {predominantVoiceGender musicalEraTag}}}}}}}`,
+    //     variables: {
+    //         first: 10,
+    //     },
+    //     },
+    // });
+
+    // // query = query.replace("\n ", "");
+    // query = query.trim();
+    // console.log(query);
+
+    // fetch("https://api.cyanite.ai/graphql", {
+    // method: "POST",
+    // body: query,
+    // headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSW50ZWdyYXRpb25BY2Nlc3NUb2tlbiIsInZlcnNpb24iOiIxLjAiLCJpbnRlZ3JhdGlvbklkIjoyODEsInVzZXJJZCI6MTAwMDYsImFjY2Vzc1Rva2VuU2VjcmV0IjoiNDQzM2Y5MDI3OTM2NDMxYWQxMGY1ZjE5NDAyZGFiNWNkNzFmNzI5N2Y4ZjJiZDAxOGM4ZGI5OTg2ODdhMTk0NSIsImlhdCI6MTY1NTczNTg4NH0.RUgVp9Pqx2Hm8Pkj852VEURqVu2XN5chGBwBJruEWIY",
+    // },
+    // })
+    // .then((res) => res.json())
+    // .then(console.log);
+    fetch("https://api.cyanite.ai/graphql", {
+  method: "POST",
+  body: JSON.stringify({
+    query: {
+      query: /* GraphQL */ `query LibraryTracksQuery {libraryTracks(first: 10) {edges {node {id}}}}`,
+      variables: {
+        first: 10,
+      },
+    },
+  }),
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer" + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSW50ZWdyYXRpb25BY2Nlc3NUb2tlbiIsInZlcnNpb24iOiIxLjAiLCJpbnRlZ3JhdGlvbklkIjoyODEsInVzZXJJZCI6MTAwMDYsImFjY2Vzc1Rva2VuU2VjcmV0IjoiNDQzM2Y5MDI3OTM2NDMxYWQxMGY1ZjE5NDAyZGFiNWNkNzFmNzI5N2Y4ZjJiZDAxOGM4ZGI5OTg2ODdhMTk0NSIsImlhdCI6MTY1NTczNTg4NH0.RUgVp9Pqx2Hm8Pkj852VEURqVu2XN5chGBwBJruEWIY",
+  },
+})
+  .then((res) => res.json())
+  .then(console.log);
 }
